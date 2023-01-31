@@ -1,6 +1,6 @@
-<div class="container">
-    <div class="card" style="width: 18rem;"
-    *ngFor="let e of events">
+<div class="row">
+<div class="col-auto" *ngFor="let e of events">
+    <div class="card" style="width: 18rem;">
         <img src="/src/assets/img/{{e._name}}"
          class="card-img-top" alt="...">
         <div class="card-body">
@@ -9,4 +9,66 @@
             <a href="#" class="btn btn-primary">{{e._price|currency:'EUR'}}</a>
         </div>
     </div>
+</div>
+<div class="col-auto mb-3">
+    <div class="card" style="width: 18rem;">
+        <img src="../../../assets/img/elmagopop.jpg" class="card-img-top" alt="elmagopop">
+        <div class="card-body">
+          <h5 class="card-title">El mago Pop ~ teatro</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">34,00 €</a>
+        </div>
+    </div>
+</div>  
+<div class="col-auto mb-3">
+    <div class="card" style="width: 18rem;">
+      <img src="../../../assets/img/avatar.jpeg" class="card-img-top" alt="avatar">
+      <div class="card-body">
+        <h5 class="card-title">Avatar ~ cine</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">8,90 €</a>
+      </div>
+    </div>
+</div>    
+<div class="col-auto mb-3">
+    <div class="card" style="width: 18rem;">
+      <img src="../../../assets/img/Campnou.jpg" class="card-img-top" alt="Campnou">
+      <div class="card-body">
+        <h5 class="card-title">Camp nou ~ deportivo</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">169,00 €</a>
+      </div>
+    </div>
+</div>    
+<div class="col-auto mb-3">
+    <div class="card" style="width: 18rem;">
+      <img src="../../../assets/img/maroon-5.jpeg" class="card-img-top" alt="maroon 5">
+      <div class="card-body">
+        <h5 class="card-title">Maroon 5 ~ concierto</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">66,00 €</a>
+      </div>
+    </div>
+</div>    
+<div class="col-auto mb-3">
+    <div class="card" style="width: 18rem;">
+      <img src="../../../assets/img/elreyleon.jpeg" class="card-img-top" alt="elreyleon">
+      <div class="card-body">
+        <h5 class="card-title">El rey leon ~ musical</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">48,45 €</a>
+      </div>
+    </div>
+</div>    
+<div class="col-auto mb-3">
+    <div class="card" style="width: 18rem;">
+      <img src="../../../assets/img/hablandohuevadas.jpeg" class="card-img-top" alt="hablandohuevadas">
+      <div class="card-body">
+        <h5 class="card-title">Hablando huevadas ~ humor</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">16,80 €</a>
+      </div>
+    </div>
+</div>      
+      
 </div>
