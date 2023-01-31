@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { UsersDataService } from 'src/app/services/users-data.service';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  constructor(private service:UsersDataService){}
   
+  existing_user!:boolean;
   username!: string;
   password!: string;
   password_confirmation!: string;
@@ -22,12 +25,13 @@ export class RegisterComponent {
     username: new FormControl('',[
       Validators.required,
       Validators.minLength(6),
-      Validators.pattern('[a-zA-Z]')
+      Validators.maxLength(12),
+      Validators.pattern('[a-zA-Z0-9]+')
     ]),
     password: new FormControl('',[
       Validators.required,
       Validators.minLength(8),
-      Validators.pattern('[a-zA-Z0-9]')
+      Validators.pattern('[a-zA-Z0-9]+')
     ]),
     password_confirmation: new FormControl('',[
       Validators.required
@@ -47,6 +51,18 @@ export class RegisterComponent {
       Validators.requiredTrue
     ])
 
-
   })
+  
+  ngOnInit():void{
+    this.existing_user = false;
+    this.username = '';
+    this.password = '';
+    this.email = '';
+  }
+
+  submit(){
+
+  }
+
+
 }

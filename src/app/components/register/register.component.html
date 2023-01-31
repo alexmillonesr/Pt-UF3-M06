@@ -8,31 +8,64 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Registro</h2>
 
-              <form>
+              <form [formGroup]="formRegister" (ngSubmit)="submit()" novalidate>
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg">Nombre de usuario</label>
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="username"/>
+                  <span *ngIf="this.formRegister.get('username')?.errors?.['required'] && this.formRegister.get('username')?.touched">
+                    Es necesario que indiques un nombre de usuario.
+                  </span>
+                  <span *ngIf="this.formRegister.get('username')?.errors?.['minlength'] && this.formRegister.get('username')?.touched">
+                    Debe tener como mínimo 6 caracteres.
+                  </span>
+                  <span *ngIf="this.formRegister.get('username')?.errors?.['maxlength'] && this.formRegister.get('username')?.touched">
+                    Debe tener como maximo 12 caracteres.
+                  </span>
+                  <span *ngIf="this.formRegister.get('username')?.errors?.['pattern'] && this.formRegister.get('username')?.touched">
+                    Debe tener solo letras.
+                  </span>
                 </div>
 
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cg">Contraseña</label>
-                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                    <input type="text" id="form3Example4cg" class="form-control form-control-lg" formControlName="password"/>
+                    <span *ngIf="this.formRegister.get('password')?.errors?.['required'] && this.formRegister.get('password')?.touched">
+                        Es necesario que indiques una contraseña.
+                    </span>
+                    <span *ngIf="this.formRegister.get('password')?.errors?.['minLength'] && this.formRegister.get('password')?.touched">
+                        Debe tener como mínimo 8 numeros.
+                    </span>
+                    <span *ngIf="this.formRegister.get('password')?.errors?.['pattern'] && this.formRegister.get('password')?.touched">
+                        Debe tener solo letras.
+                      </span>
                 </div>
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Confirma contraseña</label>
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                    <input type="text" id="form3Example4cdg" class="form-control form-control-lg" formControlName="password_confirmation" appPasswordConfirmation [pass]="this.formRegister.value.password" />
+                    <span *ngIf="this.formRegister.get('password_confirmation')?.errors?.['required'] && this.formRegister.get('password_confirmation')?.touched">
+                        Es necesario que confirmes la contraseña.
+                    </span>
+                    <span *ngIf="this.formRegister.get('password_confirmation')?.errors?.['different_pass'] && this.formRegister.get('password_confirmation')?.touched">
+                        Las contraseñas tiene que ser iguales.
+                    </span>
                 </div>
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Email</label>
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" formControlName="email"/>
+                    <span *ngIf="this.formRegister.get('email')?.errors?.['required'] && this.formRegister.get('email')?.touched">
+                        Es necesario que indiques un email.
+                    </span>
+                    <span *ngIf="this.formRegister.get('email')?.errors?.['email'] && this.formRegister.get('email')?.touched">
+                        No tiene formato de valido.
+                    </span>
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3cg">Estado civil </label>
+                    <label class="form-label" for="form3Example3cg">Estado civil</label>
                     <select name="" id="">
                         <option value="">Soltero/a</option>
                         <option value="">Casado/a</option>
@@ -60,10 +93,29 @@
                         <label for=""> Prefiero no decirlo</label>
                     </div>
                 </div>
-
+                
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example4cdg">Confirma contraseña</label>
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                    <label class="form-label" for="form3Example4cdg">Informacion de interés</label>
+                    <div>
+                        <input type="radio">
+                        <label for=""> Teatro</label>
+                    </div>
+                    <div>
+                        <input type="radio">
+                        <label for=""> Deportivo</label>
+                    </div>
+                    <div>
+                        <input type="radio">
+                        <label for=""> Cine</label>
+                    </div>
+                    <div>
+                        <input type="radio">
+                        <label for=""> Concierto</label>
+                    </div>
+                    <div>
+                        <input type="radio">
+                        <label for=""> Prefiero no decirlo</label>
+                    </div>
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
@@ -74,9 +126,12 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
+                  <button type="button" [disabled]="formRegister.invalid"
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrarte</button>
                 </div>
+                <span *ngIf="this.existing_user">
+                    Nombre de usuario existente
+                </span>
 
                 <p class="text-center text-muted mt-5 mb-0">¿Ya tienes cuenta? <a href="#!"
                     class="fw-bold text-body"><u>Inicia sesión</u></a></p>
