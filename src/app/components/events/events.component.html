@@ -1,1 +1,12 @@
-<p>events works!</p>
+<div class="container">
+    <div class="card" style="width: 18rem;"
+    *ngFor="let e of events">
+        <img src="/src/assets/img/{{e._name}}"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{e._name}}</h5>
+            <p class="card-text">{{e._type}}</p>
+            <a href="#" class="btn btn-primary">{{e._price|currency:'EUR'}}</a>
+        </div>
+    </div>
+</div>

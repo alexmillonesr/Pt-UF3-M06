@@ -16,6 +16,7 @@ export class UsersDataService {
   createUsers():User[]{
     let registered_users:User[] = [];
     let usernames = [
+      'alexmillones',
       'Dario',
       'Lucas',
       'Mamadou',
@@ -39,6 +40,7 @@ export class UsersDataService {
     ];
 
     let emails = [
+      'alexmillones@gmail.com',
       'Dario@gmail.com',
       'Lucas@gmail.com',
       'Mamadou@gmail.com',
@@ -60,8 +62,22 @@ export class UsersDataService {
       'Carlos@gmail.com',
       'Elena@gmail.com',
     ];
+
+    const password:string ='12345678'
     
     return registered_users;
   }
+
+  check_login(username:string, password:string):boolean{
+    let exist:boolean = false;
+    this.users.forEach(user =>{
+      if ((user._username === username) && (user._password === password)) {
+        exist = true;
+      } 
+    })
+  
+    return exist;
+   
+   }
 
 }

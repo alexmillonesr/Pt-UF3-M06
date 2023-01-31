@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UsersDataService } from 'src/app/services/users-data.service';
 
@@ -9,7 +10,7 @@ import { UsersDataService } from 'src/app/services/users-data.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private service:UsersDataService){}
+  constructor(private service:UsersDataService,private router:Router){}
   
   existing_user!:boolean;
   username!: string;
@@ -17,7 +18,13 @@ export class RegisterComponent {
   password_confirmation!: string;
   email!: string;
   civil_status: any = ['Soltero/a','Casado/a','Divorciado/a','Viudo/a'];
-  gender: any = ['Hombre','Mujer','Otro','Prefiero no decirlo'];
+  // gender: any = ['Hombre','Mujer','Otro','Prefiero no decirlo'];
+  gender: any = [
+    {name:'Hombre'},
+    {name:'Mujer'},
+    {name:'Otro'},
+    {name:'Prefiero no decirlo'},
+  ];
   information: any = ['Teatro','Deportivo','Cine','Concierto'];
   accept_conditions!: any;
 
@@ -26,7 +33,7 @@ export class RegisterComponent {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(12),
-      Validators.pattern('[a-zA-Z0-9]+')
+      Validators.pattern('^[a-zA-Z0-9]+$')
     ]),
     password: new FormControl('',[
       Validators.required,
@@ -61,7 +68,7 @@ export class RegisterComponent {
   }
 
   submit(){
-
+      this.router.navigate(['/login'])
   }
 
 

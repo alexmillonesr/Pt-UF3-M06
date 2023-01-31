@@ -13,125 +13,121 @@
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg">Nombre de usuario</label>
                   <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="username"/>
-                  <span *ngIf="this.formRegister.get('username')?.errors?.['required'] && this.formRegister.get('username')?.touched">
+                  <div *ngIf="this.formRegister.get('username')?.errors?.['required'] && this.formRegister.get('username')?.touched"
+                  class="text-danger">
                     Es necesario que indiques un nombre de usuario.
-                  </span>
-                  <span *ngIf="this.formRegister.get('username')?.errors?.['minlength'] && this.formRegister.get('username')?.touched">
+                  </div>
+                  <div *ngIf="this.formRegister.get('username')?.errors?.['minlength'] && this.formRegister.get('username')?.touched"
+                  class="text-danger">
                     Debe tener como mínimo 6 caracteres.
-                  </span>
-                  <span *ngIf="this.formRegister.get('username')?.errors?.['maxlength'] && this.formRegister.get('username')?.touched">
+                  </div>
+                  <div *ngIf="this.formRegister.get('username')?.errors?.['maxlength'] && this.formRegister.get('username')?.touched"
+                  class="text-danger">
                     Debe tener como maximo 12 caracteres.
-                  </span>
-                  <span *ngIf="this.formRegister.get('username')?.errors?.['pattern'] && this.formRegister.get('username')?.touched">
+                  </div>
+                  <div *ngIf="this.formRegister.get('username')?.errors?.['pattern'] && this.formRegister.get('username')?.touched"
+                  class="text-danger">
                     Debe tener solo letras.
-                  </span>
+                  </div>
                 </div>
 
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cg">Contraseña</label>
                     <input type="text" id="form3Example4cg" class="form-control form-control-lg" formControlName="password"/>
-                    <span *ngIf="this.formRegister.get('password')?.errors?.['required'] && this.formRegister.get('password')?.touched">
+                    <div *ngIf="this.formRegister.get('password')?.errors?.['required'] && this.formRegister.get('password')?.touched"
+                    class="text-danger">
                         Es necesario que indiques una contraseña.
-                    </span>
-                    <span *ngIf="this.formRegister.get('password')?.errors?.['minLength'] && this.formRegister.get('password')?.touched">
+                    </div>
+                    <div *ngIf="this.formRegister.get('password')?.errors?.['minLength'] && this.formRegister.get('password')?.touched"
+                    class="text-danger">
                         Debe tener como mínimo 8 numeros.
-                    </span>
-                    <span *ngIf="this.formRegister.get('password')?.errors?.['pattern'] && this.formRegister.get('password')?.touched">
+                    </div>
+                    <div *ngIf="this.formRegister.get('password')?.errors?.['pattern'] && this.formRegister.get('password')?.touched"
+                    class="text-danger">
                         Debe tener solo letras.
-                      </span>
+                      </div>
                 </div>
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Confirma contraseña</label>
                     <input type="text" id="form3Example4cdg" class="form-control form-control-lg" formControlName="password_confirmation" appPasswordConfirmation [pass]="this.formRegister.value.password" />
-                    <span *ngIf="this.formRegister.get('password_confirmation')?.errors?.['required'] && this.formRegister.get('password_confirmation')?.touched">
+                    <div *ngIf="this.formRegister.get('password_confirmation')?.errors?.['required'] && this.formRegister.get('password_confirmation')?.touched"
+                    class="text-danger">
                         Es necesario que confirmes la contraseña.
-                    </span>
-                    <span *ngIf="this.formRegister.get('password_confirmation')?.errors?.['different_pass'] && this.formRegister.get('password_confirmation')?.touched">
+                    </div>
+                    <div *ngIf="this.formRegister.get('password_confirmation')?.errors?.['different_pass'] && this.formRegister.get('password_confirmation')?.touched"
+                    class="text-danger">
                         Las contraseñas tiene que ser iguales.
-                    </span>
+                    </div>
                 </div>
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Email</label>
                     <input type="email" id="form3Example3cg" class="form-control form-control-lg" formControlName="email"/>
-                    <span *ngIf="this.formRegister.get('email')?.errors?.['required'] && this.formRegister.get('email')?.touched">
+                    <div *ngIf="this.formRegister.get('email')?.errors?.['required'] && this.formRegister.get('email')?.touched"
+                    class="text-danger">
                         Es necesario que indiques un email.
-                    </span>
-                    <span *ngIf="this.formRegister.get('email')?.errors?.['email'] && this.formRegister.get('email')?.touched">
+                    </div>
+                    <div *ngIf="this.formRegister.get('email')?.errors?.['email'] && this.formRegister.get('email')?.touched"
+                    class="text-danger">
                         No tiene formato de valido.
-                    </span>
+                    </div>
                 </div>
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Estado civil</label>
-                    <select name="" id="">
-                        <option value="">Soltero/a</option>
-                        <option value="">Casado/a</option>
-                        <option value="">Divorciado/a</option>
-                        <option value="">Viudo/a</option>
+                    <select name="" id="" formControlName="civil_status">
+                        <option value="{{i}}" *ngFor="let s of civil_status; let i=index" [ngValue]="s">
+                            {{s}}
+                        </option>
                     </select>
+                    <div *ngIf="this.formRegister.get('civil_status')?.errors?.['required'] && this.formRegister.get('civil_status')?.touched"
+                    class="text-danger">
+                        Es necesario que indiques tu estado civil.
+                    </div>
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example4cdg">Genero</label>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Hombre</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Mujer</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Otro</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Prefiero no decirlo</label>
+                    <label class="form-label" for="form3Example4cdg" formControlName="gender">Genero</label>                 
+                    <div *ngFor="let g of gender" >
+                        <label for="gender_answer_{{g.name}}">
+                        <input type="radio" name="gender" formControlName="gender" value="{{g.name}}"
+                          [value]="g.name">
+                         {{g.name}}
+                        </label>
                     </div>
                 </div>
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Informacion de interés</label>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Teatro</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Deportivo</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Cine</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Concierto</label>
-                    </div>
-                    <div>
-                        <input type="radio">
-                        <label for=""> Prefiero no decirlo</label>
+                    <div *ngFor="let i of information" >
+                        <label for="info_answer_{{i}}">
+                        <input type="checkbox" name="information" formControlName="gender" value="{{i}}"
+                          [value]="i">
+                         {{i}}
+                        </label>
                     </div>
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" formControlName="accept_conditions"/>
                   <label class="form-check-label" for="form2Example3g">
                     Acepto todas las declaraciones en <a href="#!" class="text-body"><u>Términos de servicio</u></a>
                   </label>
+                  <div *ngIf="this.formRegister.get('accept_conditions')?.errors?.['required'] && this.formRegister.get('accept_conditions')?.touched"
+                    class="text-danger">
+                        Tienes que hacer las condiciones para continuar.
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button" [disabled]="formRegister.invalid"
+                  <button type="submit" [disabled]="formRegister.invalid"
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrarte</button>
                 </div>
-                <span *ngIf="this.existing_user">
+                <!-- <div *ngIf="this.existing_user">
                     Nombre de usuario existente
-                </span>
+                </div> -->
 
                 <p class="text-center text-muted mt-5 mb-0">¿Ya tienes cuenta? <a href="#!"
                     class="fw-bold text-body"><u>Inicia sesión</u></a></p>

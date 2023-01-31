@@ -1,46 +1,75 @@
-<div class="container-fluid bg-color pt-5">
-  <div class="row justify-content-center">
-    <div class="col-3">
-      <h1>Iniciar sesión</h1>
-      <form>
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example1">Nombre de usuario</label>
-          <input type="email" id="form2Example1" class="form-control" placeholder="alexmillones" />
+<section class=" bg-image"
+  style="background-image: url('https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Iniciar sesión</h2>
+
+              <form [formGroup]="formLogin" (ngSubmit)="submit()">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form2Example1">Nombre de usuario</label>
+                  <input type="text" id="form2Example1" class="form-control" placeholder="alexmillones" formControlName="username"/>
+                  <div *ngIf="this.formLogin.get('username')?.errors?.['required'] && this.formLogin.get('username')?.touched"
+                  class="text-danger">
+                    Es necesario que indiques un nombre de usuario.
+                  </div>
+                  <div *ngIf="this.formLogin.get('username')?.errors?.['pattern'] && this.formLogin.get('username')?.touched"
+                  class="text-danger">
+                    No cumple el formato de nombre de usuario.
+                  </div>
+                </div>
+              
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form2Example2">Contraseña</label>
+                  <input type="text" id="form2Example2" class="form-control" placeholder="12345678" formControlName="password"/>
+                  <div *ngIf="this.formLogin.get('password')?.errors?.['required'] && this.formLogin.get('password')?.touched"
+                    class="text-danger">
+                     Es necesario que indiques una contraseña
+                  </div>
+                  <div *ngIf="this.formLogin.get('password')?.errors?.['pattern'] && this.formLogin.get('password')?.touched"
+                    class="text-danger">
+                    No cumple el formato de contraseña.
+                  </div>
+                </div>
+                   
+                <!-- Submit button -->
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-block mb-4"
+                    [disabled]="formLogin.invalid"
+                  >Iniciar sesión</button>
+                </div>
+              
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>¿No tienes cuenta? <a href="/register">Registrate</a></p>
+                  <p>O iniciar sesión con:</p>
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
+                </div>
+              </form>
+
+            </div>
+          </div>
         </div>
-      
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example2">Contraseña</label>
-          <input type="password" id="form2Example2" class="form-control" placeholder="12345678"/>
-        </div>
-           
-        <!-- Submit button -->
-        <div class="text-center">
-          <button type="button" class="btn btn-primary btn-block mb-4">Iniciar sesión</button>
-        </div>
-      
-        <!-- Register buttons -->
-        <div class="text-center">
-          <p>¿No tienes cuenta? <a href="#!">Registrate</a></p>
-          <p>O iniciar sesión con:</p>
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-          </button>
-      
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-google"></i>
-          </button>
-      
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-twitter"></i>
-          </button>
-      
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-github"></i>
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
-</div>
+</section>

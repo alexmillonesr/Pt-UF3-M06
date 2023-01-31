@@ -8,6 +8,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { EventsComponent } from './components/events/events.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordConfirmationDirective } from './directives/password-confirmation.directive';
+import { CookieService } from 'ngx-cookie-service';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { PasswordConfirmationDirective } from './directives/password-confirmatio
     LoginComponent,
     RegisterComponent,
     EventsComponent,
-    PasswordConfirmationDirective
+    PasswordConfirmationDirective,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { PasswordConfirmationDirective } from './directives/password-confirmatio
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

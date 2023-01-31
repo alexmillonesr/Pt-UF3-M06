@@ -20,7 +20,7 @@ export class Event{
     }
 
     public set name (name:string){
-        this._name = name;
+        this.name = name;
     }
 
     public set type (type:string){
