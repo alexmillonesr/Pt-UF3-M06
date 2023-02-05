@@ -14,12 +14,14 @@ export class LoginComponent {
 
   constructor(private service:UsersDataService, private router:Router, private myCookie: CookieService){}
   
+  is_logged:boolean=false;
+  has_logged!:string;
+  user_error!:boolean;
+
   users!:User[];
   username!:string;
   password!:string;
-  role!:string;
-  user_exists!:boolean;
-
+  user_role!:string;
 
   formLogin=new FormGroup({
     username: new FormControl('',[
@@ -33,6 +35,21 @@ export class LoginComponent {
   })
 
   ngOnInit(): void{
+    this.has_logged = localStorage.getItem('has_logged')!;
+
+    this.service.login.subscribe(
+      login =>{
+        this.is_logged = login;
+      }
+    );
+
+    if (this.has_logged == 'true') {
+      this.service.is_logged(true);
+      // this.router.navigate(['/events']);
+    }else{
+      this.service.is_logged(false);
+    }
+
     this.username = '';
     this.password = '';
     this.users = this.service.createUsers();
@@ -42,17 +59,19 @@ export class LoginComponent {
 
     this.username = this.formLogin.value.username!;
     this.password = this.formLogin.value.password!;
-    this.role = 'buyer'; 
 
-    console.log(this.username);
-    console.log(this.password);
+    this.user_role = this.service.check_login(this.username,this.password); 
 
-    this.user_exists = this.service.check_login(this.username, this.password);
-    console.log(this.user_exists);
+    if(this.user_role){
+      this.myCookie.set('user_cookie',`${this.username} ${this.user_role}`);
 
-    if(this.user_exists=true){
-      this.myCookie.set('cookie',`${this.username} ${this.role}`)
+      this.service.is_logged(true);
+      localStorage.setItem('has_logged',JSON.stringify(this.is_logged));
       this.router.navigate(['/events'])
+    }else{
+      this.service.is_logged(false);
+      this.user_error = true;
+      
     }
 
   }

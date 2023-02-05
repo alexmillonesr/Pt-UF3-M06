@@ -1,16 +1,57 @@
 <div class="row">
-<div class="col-auto" *ngFor="let e of events">
+  <!-- filter -->
+  <h5>Buscar por filtro</h5>
+  <div class="d-flex">
+    <p>Price</p>
+    <input type="range" min="0" max="200" [(ngModel)]="filterByPrice" (ngModelChange)="filterEvents()">
+    <p>{{filterByPrice | currency:'EUR'}}</p>
+  </div>
+  <div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect01">Localidad</label>
+      <select class="form-select" id="inputGroupSelect01"  [(ngModel)]="selected_location" (ngModelChange)="filterEvents()">
+        <option selected>Choose...</option>
+        <option value={{city}} *ngFor="let city of locations">{{city}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="">
+    <div class="d-flex" role="search">
+      <input class="form-control me-2" [(ngModel)]="filterByName" 
+      type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" (click)="filterEvents()"
+      type="submit">Search</button>
+    </div>
+    <p>coincidecias: <span> {{filtered_events.length}}</span></p>
+  </div>
+  <div *ngIf="filtered_events.length === 0">
+    <p>No hay coincidencias</p>
+  </div>
+
+<div class="col-auto" *ngFor="let event of filtered_events | paginate:{itemsPerPage:events_per_page, currentPage:current_page}">
     <div class="card" style="width: 18rem;">
-        <img src="/src/assets/img/{{e._name}}"
-         class="card-img-top" alt="...">
+        <img src="../../../assets/img/{{event._name}}.jpg"
+         class="card-img-top" alt="..." >
         <div class="card-body">
-            <h5 class="card-title">{{e._name}}</h5>
-            <p class="card-text">{{e._type}}</p>
-            <a href="#" class="btn btn-primary">{{e._price|currency:'EUR'}}</a>
+            <h5 class="card-title">{{event._name}}</h5>
+            <p class="card-text">{{event._date | date:'dd/MM/yyyy'}}</p>
+            <p class="card-text">{{event._type}} ~ <span>{{event._locate}}</span></p>
+            <span class="mx-2">
+              <button type="button" class="btn btn-primary text-center ">{{event._price|currency:'EUR'}}</button>
+              <button type="button" *ngIf=" user_role =='admin' " class="btn btn-danger text-center mx-2">
+                Delete
+              </button>
+              <button type="button" *ngIf=" user_role =='admin' " class="btn btn-danger text-center mx-2">
+                Modify
+              </button>
+            </span>
         </div>
     </div>
-</div>
-<div class="col-auto mb-3">
+  </div>
+  <div>
+    <pagination-controls class="mt-3 fw-bold text-center text-dark" (pageChange)="current_page = $event"></pagination-controls>
+  </div>
+<!-- <div class="col-auto mb-3">
     <div class="card" style="width: 18rem;">
         <img src="../../../assets/img/elmagopop.jpg" class="card-img-top" alt="elmagopop">
         <div class="card-body">
@@ -69,6 +110,6 @@
         <a href="#" class="btn btn-primary">16,80 €</a>
       </div>
     </div>
-</div>      
+</div>       -->
       
 </div>

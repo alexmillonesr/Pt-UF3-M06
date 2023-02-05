@@ -6,7 +6,7 @@ export class Event{
     _locate: string;
     _price: string;
 
-    public constructor (id:number, name:string, type:string, date:Date, locate:string, price:string){
+    public constructor (id:number = 0, name:string = "", type:string ="", date:Date=new Date(), locate:string="", price:string=""){
         this._id     = id;
         this._name   = name;
         this._type   = type;
@@ -37,5 +37,29 @@ export class Event{
 
     public set price (price:string){
         this._price = price;
+    }
+
+    public get id(){
+        return this._id;
+    }
+
+    public get name(){
+        return this._name;
+    }
+
+    public get type(){
+        return this._type;
+    }
+
+    public get date(){
+        return this._date;
+    }
+
+    public get locate(){
+        return this._locate;
+    }
+
+    public get price(){
+        return this._price;
     }
 }

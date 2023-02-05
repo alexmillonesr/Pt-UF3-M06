@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EventsComponent } from './components/events/events.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PasswordConfirmationDirective } from './directives/password-confirmation.directive';
-import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './components/logout/logout.component';
+import { PasswordConfirmationDirective } from './directives/password-confirmation.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

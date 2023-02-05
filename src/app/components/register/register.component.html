@@ -91,10 +91,10 @@
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg" formControlName="gender">Genero</label>                 
                     <div *ngFor="let g of gender" >
-                        <label for="gender_answer_{{g.name}}">
-                        <input type="radio" name="gender" formControlName="gender" value="{{g.name}}"
-                          [value]="g.name">
-                         {{g.name}}
+                        <label for="gender_answer_{{g}}">
+                        <input type="radio" name="gender" formControlName="gender" value="{{g}}"
+                          [value]="g">
+                         {{g}}
                         </label>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ export class User{
     _gender: any;
     _information: any;
 
-    public constructor (username:string, password:string, role:string, email:string, civil_status:any, gender:any, information:any) {
+    public constructor ( username:string, email:string, civil_status:any, gender:any, information:any ,password:string ='12345678',role:string ='buyer') {
         this._username = username;
         this._password = password;
         this._role = role;

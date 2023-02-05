@@ -65,8 +65,10 @@
                   </button>
                 </div>
               </form>
-
             </div>
+          </div>
+          <div *ngIf="user_error" class="alert alert-danger mt-3">
+            Ha ocurrido algun error en las credenciales
           </div>
         </div>
       </div>

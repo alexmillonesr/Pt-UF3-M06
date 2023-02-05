@@ -12,20 +12,23 @@ import { UsersDataService } from 'src/app/services/users-data.service';
 export class RegisterComponent {
   constructor(private service:UsersDataService,private router:Router){}
   
+  user!:User;
+
   existing_user!:boolean;
+  
   username!: string;
   password!: string;
   password_confirmation!: string;
   email!: string;
-  civil_status: any = ['Soltero/a','Casado/a','Divorciado/a','Viudo/a'];
-  // gender: any = ['Hombre','Mujer','Otro','Prefiero no decirlo'];
-  gender: any = [
-    {name:'Hombre'},
-    {name:'Mujer'},
-    {name:'Otro'},
-    {name:'Prefiero no decirlo'},
-  ];
-  information: any = ['Teatro','Deportivo','Cine','Concierto'];
+  civil_status: any = ['Soltero/a','Casado/a','Divorciado/a'];
+  gender: any = ['Hombre','Mujer','Otro','Prefiero no decirlo'];
+  // gender: any = [
+  //   {name:'Hombre'},
+  //   {name:'Mujer'},
+  //   {name:'Otro'},
+  //   {name:'Prefiero no decirlo'},
+  // ];
+  information: any = ['Deportivo','Cine','Concierto'];
   accept_conditions!: any;
 
   formRegister = new FormGroup({
@@ -61,14 +64,28 @@ export class RegisterComponent {
   })
   
   ngOnInit():void{
-    this.existing_user = false;
     this.username = '';
     this.password = '';
     this.email = '';
+    this.existing_user = false;
   }
 
   submit(){
+    const DEFAULT_ROL: string = 'buyer';
+    this.user = new User(
+      this.formRegister.value.username!,
+      this.formRegister.value.email!,
+      this.formRegister.value.civil_status!,
+      this.formRegister.value.gender!,
+      this.formRegister.value.information!,
+      this.formRegister.value.password!,
+      DEFAULT_ROL
+    );
+    this.existing_user = this.service.existUser(this.user.username);
+    if (!this.existing_user) {
+      this.service.registerUser(this.user);
       this.router.navigate(['/login'])
+    }
   }
 
 
